@@ -5,14 +5,6 @@ Spyder Editor
 Author: Sanjoy Basu
 Date: 2020-03-28
 """
-import requests
-import datetime
-import csv
-import time
-import os
-import json
-import geohash2
-import boto3
 
 #! /root/anaconda3/bin/python
 # Global variables

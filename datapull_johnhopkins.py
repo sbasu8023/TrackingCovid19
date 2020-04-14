@@ -31,7 +31,6 @@ import boto3
 
 url_path='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/'
 temp_dir='/tmp/'
-local_dir="/var/log/covid19/" # to AWS Kinesis Firehose
 schema=['FIPS','Admin2','State','Country','Last_Update','Lat','Lon','Confirmed','Deaths','Recovered','Active','Combined_Key']
 schematype=['int','str' ,'str','str','str', 'float', 'float', 'int', 'int', 'int','int', 'str']
 schema_final=['FIPS','Admin2','State','Country','Last_Update','Location','Location_hash', 'Confirmed','Deaths','Recovered','Active','Combined_Key']
@@ -117,7 +116,7 @@ def put2_stream():
                 location={"lat":get_type('float',row[5]) ,"lon": get_type('float',row[6])}
                 loc_hash=geohash2.encode(get_type('float',row[5]), get_type('float',row[6]))
                 values.insert(5, location); values.insert(6, loc_hash)
-                time.sleep(0.2) # Slowing down logging
+                time.sleep(0.2) # Slowing down streaming
                 response=client.put_record(DeliveryStreamName=delivery_stream,Record={'Data': json.dumps(dict(zip(schema_final,values)))})
                 #print(json.dumps(dict(zip(schema_final,values))))
     os.remove(src_path)

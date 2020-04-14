@@ -93,7 +93,7 @@ def get_data():
     uri=get_dataURL(get_filename(daytopull))
     try:
         rq = requests.get(uri)
-    except requests.exceptions.RequestException as e:  # This is the correct syntax
+    except requests.exceptions.RequestException as e:  
         raise SystemExit(e)
     with open(tmppath, 'wb') as fl:
         fl.write(rq.content)

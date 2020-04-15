@@ -53,9 +53,6 @@ def get_tmppath(datafile):
     # Generate temporary path (string)
     return temp_dir+datafile+'.csv'
 
-def get_localpath(datafile):
-    # Generate log path (string)
-    return local_dir+datafile
 
 def fix_time(dt): 
           if '/' in dt: 
